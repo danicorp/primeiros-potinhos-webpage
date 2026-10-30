@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primeiros Potinhos · Introdução alimentar passo a passo</title>
+<meta name="description" content="Guia prático de introdução alimentar com tabelas, checklists e receitas para bebês de 6 a 12 meses. Acesso imediato por R$ 37,90.">
+<!--
+  PENDÊNCIAS ANTES DE PUBLICAR (ver ../checklist-de-revisao.md):
+  1. [CONFIRMAR] ID do Meta Pixel — hoje o bloco da base está APAGADO; inserir no <head> quando houver.
+-->
+<style>
+  :root {
+    /* Paleta — extraída de L01/L02/B01 e C01–C06 aprovados */
+    --azul: #B8502A;          /* terracota — cor de marca principal */
+    --azul-escuro: #593A24;   /* marrom — texto e fundos escuros */
+    --azul-fundo: #96421F;    /* terracota escura — fim do gradiente */
+    --azul-claro: #F9EBDB;    /* creme escurecido — fundo de seções suaves */
+    --amarelo: #F6B94B;       /* âmbar — destaque/grifo */
+    --amarelo-forte: #F6B94B;
+    --agua: #7B8B4F;
+    --verde: #68763F;         /* verde oliva escuro — CTA */
+    --verde-escuro: #525E32;
+    --rosa: #C1552B;
+    --laranja: #B34A22;       /* barra do topo */
+    --creme: #FBF3E3;         /* fundo do corpo */
+    --branco: #FFFFFF;
+    /* Tipografia: fonte arredondada do nicho infantil (system fallback offline) */
+    --fonte: 'Baloo 2', 'Nunito', system-ui, -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    font-family: var(--fonte);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--azul-escuro);
+    background: var(--creme);
+  }
+
+  img { max-width: 100%; height: auto; display: block; }
+  ul { list-style: none; }
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  section { padding: 60px 0; }
+
+  /* ---------- Título com grifo ---------- */
+  section h2 {
+    font-size: clamp(1.6rem, 4vw, 2.3rem);
+    text-align: center;
+    margin-bottom: 28px;
+    color: var(--azul-escuro);
+    line-height: 1.2;
+  }
+  .grifo { background: var(--amarelo); color: var(--azul-escuro); padding: 0 8px; border-radius: 8px; }
+  .secao-escura h2 { color: var(--branco); }
+
+  /* ---------- Botões ---------- */
+  .btn {
+    display: inline-block;
+    background: var(--verde);
+    color: var(--branco);
+    font-family: var(--fonte);
+    font-weight: 800;
+    font-size: 1.15rem;
+    text-decoration: none;
+    text-align: center;
+    padding: 16px 36px;
+    border-radius: 999px;
+    box-shadow: 0 6px 0 var(--verde-escuro);
+    transition: transform .12s ease, box-shadow .12s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover, .btn:focus-visible { transform: translateY(2px); box-shadow: 0 4px 0 var(--verde-escuro); }
+  .btn-amarelo { background: var(--amarelo); color: var(--azul-escuro); box-shadow: 0 6px 0 #E0A800; }
+  .btn-amarelo:hover, .btn-amarelo:focus-visible { box-shadow: 0 4px 0 #E0A800; }
+  .btn-bloco { display: block; width: 100%; }
+
+  /* ---------- Barra do topo (data de hoje via JS em #data-oferta) ---------- */
+  .barra-oferta {
+    background: var(--laranja);
+    color: var(--branco);
+    text-align: center;
+    font-weight: 800;
+    font-size: .95rem;
+    padding: 10px 16px;
+  }
+  .barra-oferta strong { text-decoration: underline; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: linear-gradient(160deg, var(--azul-escuro) 0%, var(--azul) 75%, var(--azul-fundo) 100%);
+    color: var(--branco);
+    padding: 44px 0 60px;
+    text-align: center;
+  }
+  .hero-logo {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 18px;
+    border-radius: 18px;
+    background: var(--creme);
+    padding: 6px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.25);
+  }
+  .hero h1 {
+    font-size: clamp(1.9rem, 5.5vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: 14px;
+    text-shadow: 0 3px 0 rgba(0,0,0,.18);
+  }
+  .hero h1 .grifo { background: transparent; color: var(--amarelo-forte); padding: 0; }
+  .hero .sub {
+    font-size: clamp(1.05rem, 2.6vw, 1.3rem);
+    font-weight: 600;
+    max-width: 620px;
+    margin: 0 auto 28px;
+    opacity: .96;
+  }
+  .hero-banner {
+    display: block;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    filter: drop-shadow(0 16px 26px rgba(0,0,0,.35));
+    animation: flutuar 4s ease-in-out infinite;
+  }
+  @keyframes flutuar {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -10px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-banner { animation: none; }
+  }
+
+  /* ---------- Benefícios (cards) ---------- */
+  .beneficios { background: var(--creme); }
+  .intro-secao { text-align: center; max-width: 680px; margin: 0 auto 26px; font-weight: 600; }
+  .cards-beneficios {
+    max-width: 920px;
+    margin: 0 auto;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 620px) { .cards-beneficios { grid-template-columns: 1fr 1fr; } }
+  .card-beneficio {
+    background: var(--branco);
+    border-radius: 18px;
+    padding: 26px 22px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(89,58,36,.10);
+    border-top: 6px solid var(--amarelo);
+  }
+  .card-beneficio .icone {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 12px;
+    font-size: 1.8rem;
+    background: var(--azul-claro);
+    border-radius: 16px;
+  }
+  .card-beneficio p { font-weight: 600; }
+
+  /* ---------- Carrossel/faixa infinita (por dentro do produto) ---------- */
+  .demo { background: var(--branco); }
+  .faixa {
+    overflow: hidden;
+    margin-top: 34px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  }
+  .faixa-trilho {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    padding: 4px 0 10px;
+    animation: faixa-rolar 120s linear infinite;
+  }
+  .faixa:hover .faixa-trilho { animation-play-state: paused; }
+  .faixa-item {
+    flex: 0 0 clamp(170px, 22vw, 280px);
+    background: var(--branco);
+    border: 2px solid #F2E4D4;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(89,58,36,.16);
+  }
+  .faixa-item img { display: block; width: 100%; }
+  .faixa-legenda {
+    padding: 10px 12px;
+    font-weight: 700;
+    font-size: .85rem;
+    text-align: center;
+    color: var(--azul-escuro);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @keyframes faixa-rolar { to { transform: translateX(calc(-50% - 9px)); } }
+  @media (min-width: 2200px) {
+    .faixa-item { flex-basis: clamp(300px, 14vw, 640px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .faixa { overflow-x: auto; }
+    .faixa-trilho { animation: none; }
+  }
+
+  /* ---------- O que vem no produto ---------- */
+  .receber { background: var(--branco); }
+  .receber-linha { display: grid; gap: 26px; max-width: 960px; margin: 0 auto; align-items: center; }
+  @media (min-width: 760px) { .receber-linha { grid-template-columns: 1fr 1fr; } }
+  .receber-figura img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 12px 20px rgba(89,58,36,.20));
+  }
+  .receber-lista li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--creme);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .receber-lista li:last-child { margin-bottom: 0; }
+  .receber-lista .marca { flex: 0 0 auto; }
+
+  /* ---------- Bônus ---------- */
+  .bonus { background: var(--creme); }
+  .cards-bonus { display: grid; gap: 16px; max-width: 920px; margin: 0 auto; }
+  @media (min-width: 620px) { .cards-bonus { grid-template-columns: 1fr 1fr; } }
+  .card-bonus {
+    background: var(--branco);
+    border-radius: 18px;
+    padding: 24px 22px;
+    box-shadow: 0 4px 12px rgba(89,58,36,.10);
+    border-top: 6px solid var(--amarelo);
+  }
+  .bonus-mockup {
+    display: block;
+    max-width: 780px;
+    margin: 0 auto 30px;
+    filter: drop-shadow(0 10px 18px rgba(89,58,36,.18));
+  }
+  .badge-bonus {
+    display: inline-block;
+    background: var(--amarelo);
+    color: var(--azul-escuro);
+    font-weight: 800;
+    font-size: .78rem;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    padding: 4px 12px;
+    margin-bottom: 10px;
+  }
+  .card-bonus h3 { font-size: 1.08rem; color: var(--azul); margin-bottom: 6px; }
+  .card-bonus p { font-weight: 600; }
+
+  /* ---------- Depoimentos (feed de posts) ---------- */
+  .provas { background: var(--azul-claro); }
+  .feed { display: grid; gap: 20px; max-width: 860px; margin: 0 auto; }
+  @media (min-width: 700px) { .feed { grid-template-columns: 1fr 1fr; } }
+  .post {
+    background: var(--branco);
+    border: 1px solid #E1E4E8;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(89,58,36,.10);
+  }
+  .post-topo { display: flex; align-items: center; gap: 10px; padding: 10px 12px; }
+  .post-avatar {
+    flex: 0 0 38px;
+    height: 38px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--amarelo), var(--rosa));
+    color: var(--branco);
+    font-weight: 800;
+    font-size: .85rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,.35);
+  }
+  .post-avatar img, .post-avatar svg { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .post-usuario {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+    font-weight: 700;
+    font-size: .92rem;
+    color: #262626;
+  }
+  .post-usuario small { font-weight: 500; font-size: .78rem; color: #8E8E8E; }
+  .post-menu { margin-left: auto; color: #8E8E8E; font-weight: 800; letter-spacing: 2px; }
+  .post-acoes { padding: 10px 12px 2px; font-size: 1.25rem; letter-spacing: 8px; }
+  .post-corpo { padding: 6px 12px 14px; }
+  .post-legenda { font-size: .95rem; line-height: 1.55; color: #262626; }
+  .post-legenda strong { color: var(--azul); }
+
+  /* ---------- Oferta (plano único) ---------- */
+  .oferta { background: linear-gradient(170deg, var(--azul-escuro) 0%, var(--azul-fundo) 100%); color: var(--branco); }
+  .planos { display: grid; gap: 20px; max-width: 520px; margin: 0 auto; grid-template-columns: 1fr; }
+  .plano {
+    background: var(--branco);
+    color: var(--azul-escuro);
+    border-radius: 22px;
+    padding: 32px 28px;
+    text-align: center;
+    box-shadow: 0 14px 30px rgba(0,0,0,.3);
+    display: flex;
+    flex-direction: column;
+  }
+  .plano h3 { color: var(--azul); font-size: 1.3rem; margin-bottom: 6px; }
+  .plano .preco { font-size: 2.6rem; font-weight: 800; color: var(--azul-escuro); line-height: 1.1; }
+  .plano .preco small { font-size: 1rem; font-weight: 600; color: #7A8CA8; }
+  .plano .conteudo { margin: 16px 0 22px; text-align: left; }
+  .plano .conteudo li { padding: 6px 0 6px 30px; font-weight: 600; position: relative; }
+  .plano .conteudo li::before {
+    content: "✓";
+    position: absolute;
+    left: 0; top: 5px;
+    width: 20px; height: 20px;
+    background: var(--verde);
+    color: var(--branco);
+    border-radius: 50%;
+    font-size: .75rem;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+  }
+  .plano .btn { margin-top: auto; }
+  .nota-pagamento { text-align: center; margin-top: 24px; font-weight: 700; }
+
+  /* ---------- Garantia ---------- */
+  .garantia-card {
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--branco);
+    border-radius: 20px;
+    padding: 32px 28px;
+    display: grid;
+    gap: 22px;
+    align-items: center;
+    box-shadow: 0 4px 14px rgba(89,58,36,.12);
+    border: 3px solid var(--verde);
+    text-align: left;
+  }
+  @media (min-width: 640px) { .garantia-card { grid-template-columns: auto 1fr; } }
+  .garantia-card .selo-dias {
+    justify-self: center;
+    flex: 0 0 120px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--verde);
+    color: var(--branco);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    line-height: 1.05;
+    box-shadow: 0 0 0 6px #EDEFE4;
+  }
+  .garantia-card .selo-dias .num { font-size: 2.4rem; font-weight: 800; }
+  .garantia-card .selo-dias .rotulo { font-size: .85rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+  .garantia-card h2 { text-align: left; margin-bottom: 10px; font-size: 1.5rem; }
+  .garantia-card p { font-weight: 600; }
+  .garantia-card .condicoes { margin-top: 10px; font-size: .95rem; color: #5A6B85; font-weight: 400; }
+
+  /* ---------- FAQ ---------- */
+  .faq { background: var(--creme); }
+  .faq details {
+    max-width: 760px;
+    margin: 0 auto 12px;
+    background: var(--branco);
+    border-radius: 14px;
+    padding: 16px 18px;
+    box-shadow: 0 2px 8px rgba(89,58,36,.08);
+  }
+  .faq summary {
+    font-weight: 800;
+    color: var(--azul-escuro);
+    cursor: pointer;
+    font-size: 1.02rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .faq summary::after { content: "＋"; font-size: 1.3rem; color: var(--azul); flex: 0 0 auto; }
+  .faq details[open] summary::after { content: "－"; }
+  .faq details p { margin-top: 10px; font-weight: 600; }
+
+  /* ---------- Ajustes de acesso ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .btn { transition: none; }
+  }
+</style>
+<!-- META PIXEL (base): [CONFIRMAR: ID_PIXEL] — bloco APAGADO por não haver pixel.
+     Inserir no <head> (script + noscript + PageView) quando o ID existir;
+     nunca deixar ID vazio. -->
+</head>
+<body>
+
+<!-- BARRA DO TOPO — data de hoje preenchida por JS em #data-oferta -->
+<div class="barra-oferta">⚠ Oferta válida até <strong id="data-oferta">hoje</strong></div>
+
+<!-- ============ 1. HERO ============ -->
+<header class="hero secao-escura">
+  <div class="container">
+    <img class="hero-logo" src="imagens/logo.png" alt="Primeiros Potinhos" width="76" height="76">
+    <h1>Introdução alimentar <span class="grifo">passo a passo</span></h1>
+    <p class="sub">Guia prático com tabelas, checklists e receitas para acompanhar cada fase do seu bebê de 6 a 12 meses — você abre, organiza e aplica no dia a dia. Acesso imediato por R$ 37,90.</p>
+    <!-- mockup.webp: mockup do produto (1280x853) — gerar via ../prompts-mockup.md -->
+    <img class="hero-banner" src="imagens/mockup.webp" alt="Mockup do guia Primeiros Potinhos com a capa e páginas internas" width="1280" height="853" loading="eager">
+    <p><a class="btn" href="#oferta">Quero o roteiro agora</a></p>
+  </div>
+</header>
+
+<!-- ============ 2. CARROSSEL: POR DENTRO DO PRODUTO ============
+     Prints reais (tools/paginas-para-web/), 900x1125 (4:5).
+     4 cópias da lista completa (A acessível + B, C, D decorativas). -->
+<section class="demo">
+  <div class="container">
+    <h2><span class="grifo">Por dentro</span> do guia, página a página</h2>
+  </div>
+  <div class="faixa">
+    <ul class="faixa-trilho">
+      <!-- Bloco A (acessível) -->
+      <li class="faixa-item">
+        <img src="imagens/produto-01.webp" alt="Capa do guia Primeiros Potinhos" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Capa — Primeiros Potinhos</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/produto-04.webp" alt="Página: sinais de prontidão" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Sinais de prontidão</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/produto-10.webp" alt="Página: ordem sugerida dos alimentos" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Ordem sugerida dos alimentos</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/produto-14.webp" alt="Página: passo a passo do alimento novo" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Passo a passo do alimento novo</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/produto-22.webp" alt="Página: exemplo de dia" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Exemplo de dia</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/produto-27.webp" alt="Página: checklist do dia" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Checklist do dia</p>
+      </li>
+      <!-- Bloco B (decorativo) -->
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-01.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Capa — Primeiros Potinhos</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-04.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Sinais de prontidão</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-10.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Ordem sugerida dos alimentos</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-14.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Passo a passo do alimento novo</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-22.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Exemplo de dia</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-27.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Checklist do dia</p>
+      </li>
+      <!-- Bloco C (decorativo) -->
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-01.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Capa — Primeiros Potinhos</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-04.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Sinais de prontidão</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-10.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Ordem sugerida dos alimentos</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-14.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Passo a passo do alimento novo</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-22.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Exemplo de dia</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-27.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Checklist do dia</p>
+      </li>
+      <!-- Bloco D (decorativo) -->
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-01.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Capa — Primeiros Potinhos</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-04.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Sinais de prontidão</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-10.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Ordem sugerida dos alimentos</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-14.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Passo a passo do alimento novo</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-22.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Exemplo de dia</p>
+      </li>
+      <li class="faixa-item" aria-hidden="true">
+        <img src="imagens/produto-27.webp" alt="" width="900" height="1125" loading="lazy">
+        <p class="faixa-legenda">Checklist do dia</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 3. BENEFÍCIOS ============ -->
+<section class="beneficios">
+  <div class="container">
+    <h2>O que você leva para o dia a dia</h2>
+    <p class="intro-secao">Um material prático para consultar na hora de comer — sem pesquisa espalhada e sem ficar na dúvida.</p>
+    <div class="cards-beneficios">
+      <div class="card-beneficio">
+        <span class="icone" aria-hidden="true">🗺️</span>
+        <p><strong>Roteiro fase a fase</strong> — do começo aos 12 meses, com o que fazer em cada etapa.</p>
+      </div>
+      <div class="card-beneficio">
+        <span class="icone" aria-hidden="true">📋</span>
+        <p><strong>Tabelas para marcar</strong> — anote o que já foi oferecido e leve na consulta.</p>
+      </div>
+      <div class="card-beneficio">
+        <span class="icone" aria-hidden="true">🥄</span>
+        <p><strong>Receitas rápidas</strong> — purês, cremes e papinhas com o que você já tem em casa.</p>
+      </div>
+      <div class="card-beneficio">
+        <span class="icone" aria-hidden="true">📅</span>
+        <p><strong>Cardápio semanal</strong> — exemplos prontos para adaptar à rotina da sua casa.</p>
+      </div>
+      <div class="card-beneficio">
+        <span class="icone" aria-hidden="true">🥚</span>
+        <p><strong>Alergênicos organizados</strong> — apresente um por vez, sempre com o pediatra.</p>
+      </div>
+      <div class="card-beneficio">
+        <span class="icone" aria-hidden="true">💬</span>
+        <p><strong>Dúvidas respondidas</strong> — as 10 perguntas mais comuns, com resposta direta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. DEPOIMENTOS (fictícios, sem selo "verificado") ============ -->
+<section class="provas">
+  <div class="container">
+    <h2>O que outras mães estão achando</h2>
+    <div class="feed">
+      <article class="post">
+        <header class="post-topo">
+          <span class="post-avatar" aria-hidden="true">CR</span>
+          <span class="post-usuario">Camila R. <small>mãe do Théo</small></span>
+          <span class="post-menu" aria-hidden="true">•••</span>
+        </header>
+        <div class="post-acoes" aria-hidden="true">🤍 💬 ➤</div>
+        <div class="post-corpo">
+          <p class="post-legenda"><strong>Camila R.</strong> "Eu pesquisava tudo na dúvida e achava que estava errando em alguma coisa. Com o roteiro em mãos, a semana do Théo ficou muito mais organizada."</p>
+        </div>
+      </article>
+      <article class="post">
+        <header class="post-topo">
+          <span class="post-avatar" aria-hidden="true">JM</span>
+          <span class="post-usuario">Juliana M. <small>mãe da Manu</small></span>
+          <span class="post-menu" aria-hidden="true">•••</span>
+        </header>
+        <div class="post-acoes" aria-hidden="true">🤍 💬 ➤</div>
+        <div class="post-corpo">
+          <p class="post-legenda"><strong>Juliana M.</strong> "A tabela de marcação virou meu caderninho: levo na consulta e converso melhor com a pediatra sobre o que já apresentamos."</p>
+        </div>
+      </article>
+      <article class="post">
+        <header class="post-topo">
+          <span class="post-avatar" aria-hidden="true">BS</span>
+          <span class="post-usuario">Beatriz S. <small>mãe do Lucas</small></span>
+          <span class="post-menu" aria-hidden="true">•••</span>
+        </header>
+        <div class="post-acoes" aria-hidden="true">🤍 💬 ➤</div>
+        <div class="post-corpo">
+          <p class="post-legenda"><strong>Beatriz S.</strong> "As receitas são com ingredientes que já temos em casa. O jantar do Lucas ficou sem drama e sem almoço de véspera complicado."</p>
+        </div>
+      </article>
+      <article class="post">
+        <header class="post-topo">
+          <span class="post-avatar" aria-hidden="true">RA</span>
+          <span class="post-usuario">Renata A. <small>mãe da Alice</small></span>
+          <span class="post-menu" aria-hidden="true">•••</span>
+        </header>
+        <div class="post-acoes" aria-hidden="true">🤍 💬 ➤</div>
+        <div class="post-corpo">
+          <p class="post-legenda"><strong>Renata A.</strong> "Gostei de ter um material só, no celular, para consultar na hora. Marquei as páginas que uso toda semana."</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. O QUE VEM NO MATERIAL ============ -->
+<section class="receber">
+  <div class="container">
+    <h2>O que vem no material</h2>
+    <div class="receber-linha">
+      <div class="receber-figura">
+        <img src="imagens/mockup.webp" alt="Mockup do guia Primeiros Potinhos com a capa e páginas internas" width="1280" height="853" loading="lazy">
+      </div>
+      <ul class="receber-lista">
+        <li><span class="marca" aria-hidden="true">✅</span> Guia principal Primeiros Potinhos — roteiro prático do primeiro potinho à mesa</li>
+        <li><span class="marca" aria-hidden="true">✅</span> Sinais de prontidão, ordem sugerida e evolução de texturas</li>
+        <li><span class="marca" aria-hidden="true">✅</span> Quanto oferecer, fome e saciedade, quando ele recusa</li>
+        <li><span class="marca" aria-hidden="true">✅</span> Higiene, segurança e quando procurar o pediatra</li>
+        <li><span class="marca" aria-hidden="true">✅</span> Exemplo de dia, lista de compras e checklist do dia</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. BÔNUS ============ -->
+<section class="bonus">
+  <div class="container">
+    <h2>E ainda leva 5 bônus</h2>
+    <!-- mockup-bonus.webp: mockup dos 5 bônus (1280x853, fundo transparente) — M02 via ../prompts-mockup.md -->
+    <img class="bonus-mockup" src="imagens/mockup-bonus.webp" alt="Os 5 bônus: tabela de introdução, receitas rápidas, cardápio semanal, guia dos alergênicos e dúvidas da mesa" width="1280" height="853" loading="lazy">
+    <div class="cards-bonus">
+      <div class="card-bonus">
+        <span class="badge-bonus">Bônus 1</span>
+        <h3>Tabela de Introdução</h3>
+        <p>Caixas vazias para marcar cada alimento com a data — leve na consulta do pediatra.</p>
+      </div>
+      <div class="card-bonus">
+        <span class="badge-bonus">Bônus 2</span>
+        <h3>Receitas Rápidas</h3>
+        <p>7 receitas de purês, cremes e papinhas com ingredientes simples de mercado.</p>
+      </div>
+      <div class="card-bonus">
+        <span class="badge-bonus">Bônus 3</span>
+        <h3>Cardápio Semanal</h3>
+        <p>Exemplos de dia a dia para adaptar à sua rotina, com lista de compras.</p>
+      </div>
+      <div class="card-bonus">
+        <span class="badge-bonus">Bônus 4</span>
+        <h3>Guia dos Alergênicos</h3>
+        <p>Rotina de apresentação combinada com o pediatra, um alimento por vez.</p>
+      </div>
+      <div class="card-bonus">
+        <span class="badge-bonus">Bônus 5</span>
+        <h3>Dúvidas da Mesa</h3>
+        <p>As 10 perguntas mais comuns da introdução alimentar, com resposta curta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. OFERTA (plano único) ============ -->
+<section class="oferta secao-escura" id="oferta">
+  <div class="container">
+    <h2>Guia completo + 5 bônus por R$ 37,90</h2>
+    <div class="planos">
+      <div class="plano">
+        <h3>Primeiros Potinhos — completo</h3>
+        <p class="preco">R$ 37,90<br><small>pagamento único</small></p>
+        <ul class="conteudo">
+          <li>Guia principal Primeiros Potinhos, do primeiro potinho à mesa</li>
+          <li>5 bônus: tabela, receitas, cardápio, alergênicos e dúvidas</li>
+          <li>Acesso imediato após a compra</li>
+          <li>Envio imediato</li>
+        </ul>
+        <a class="btn btn-bloco" href="https://ggcheckout.app/checkout/v5/2A1woa6UJy3gKmPYwBI0Ga" data-checkout="plano1" data-checkout-nome="Primeiros Potinhos — completo" data-checkout-valor="37.90">Quero meu acesso agora</a>
+      </div>
+    </div>
+    <p class="nota-pagamento">Pagamento único · sem assinatura · acesso liberado na hora</p>
+  </div>
+</section>
+
+<!-- ============ 8. GARANTIA ============ -->
+<section>
+  <div class="container">
+    <div class="garantia-card">
+      <div class="selo-dias" aria-hidden="true">
+        <div><span class="num">7</span><br><span class="rotulo">dias</span></div>
+      </div>
+      <div>
+        <h2>7 dias de garantia</h2>
+        <p>Você tem 7 dias para conhecer o material com calma — se não fizer sentido para a sua família, é só pedir o reembolso pelo mesmo canal da compra, sem burocracia.</p>
+        <p class="condicoes">Direito de arrependimento em 7 dias a partir da compra, conforme o artigo 49 do Código de Defesa do Consumidor. O pedido é feito pelo mesmo canal do pagamento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. FAQ (a página termina aqui — sem rodapé) ============ -->
+<section class="faq">
+  <div class="container">
+    <h2>Perguntas frequentes</h2>
+    <details>
+      <summary>Como eu recebo após a compra?</summary>
+      <p>O acesso chega imediatamente após a confirmação do pagamento, no e-mail usado na compra, com instruções de acesso ao material.</p>
+    </details>
+    <details>
+      <summary>É para que idade?</summary>
+      <p>O roteiro cobre a introdução alimentar de bebês de 6 a 12 meses, do primeiro potinho até a comida da família.</p>
+    </details>
+    <details>
+      <summary>Meu bebê recusa comida, funciona?</summary>
+      <p>O guia traz o passo a passo para oferecer sem forçar, respeitar a recusa e voltar em outro dia. Cada bebê tem seu ritmo; o material organiza o caminho, não promete resultado.</p>
+    </details>
+    <details>
+      <summary>Preciso comprar algo especial para cozinhar?</summary>
+      <p>Não. As receitas usam ingredientes simples de mercado, com panela de casa.</p>
+    </details>
+    <details>
+      <summary>Como funciona a garantia?</summary>
+      <p>Você tem 7 dias a partir da compra para pedir o reembolso, pelo mesmo canal do pagamento.</p>
+    </details>
+    <details>
+      <summary>Posso levar na consulta do pediatra?</summary>
+      <p>Pode, e é recomendado: leve as tabelas de marcação e suas anotações para revisar juntos.</p>
+    </details>
+    <details>
+      <summary>É impresso? Chega pelos Correios?</summary>
+      <p>Não é produto físico: é material digital com envio imediato, sem frete e sem espera.</p>
+    </details>
+    <details>
+      <summary>Quais formas de pagamento?</summary>
+      <p>PIX para garantir sua seguraça sem armazenar dados!</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ DATA DA OFERTA (JS) ============ -->
+<script>
+  (function () {
+    var alvo = document.getElementById('data-oferta');
+    if (!alvo) return;
+    alvo.textContent = new Date().toLocaleDateString('pt-BR');
+  })();
+</script>
+
+<!-- ============ COBERTURA DO CARROSSEL ============
+     Garante que a metade do trilho sempre cubra a janela (telas largas ou
+     zoom-out não podem deixar um vão antes do reset). Se faltar, replica o
+     grupo de 4 blocos (múltiplo de 4 mantém a matemática do -50% válida);
+     na janela normal nada é replicado. -->
+<script>
+  (function () {
+    var trilho = document.querySelector('.faixa-trilho');
+    if (!trilho) return;
+    var grupo = Array.prototype.slice.call(trilho.children);
+    var rodadas = 0;
+    while (trilho.scrollWidth / 2 < window.innerWidth * 1.1 && rodadas < 4) {
+      grupo.forEach(function (item) { trilho.appendChild(item.cloneNode(true)); });
+      rodadas++;
+    }
+  })();
+</script>
+
+<!-- ============ EVENTOS DA PÁGINA (ViewContent + InitiateCheckout) ============
+     Sem ID de pixel, `fbq` vira no-op e o repasse de UTM/fbclid continua
+     funcionando (fica no clique de cada CTA de checkout). -->
+<script>
+  (function () {
+    var PARAMETROS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid'];
+    var chegada = new URLSearchParams(window.location.search);
+
+    document.querySelectorAll('a[data-checkout]').forEach(function (botao) {
+      var destino = new URL(botao.getAttribute('href'), window.location.href);
+      PARAMETROS.forEach(function (nome) {
+        var valor = chegada.get(nome);
+        if (valor) destino.searchParams.set(nome, valor);
+      });
+      botao.setAttribute('href', destino.toString());
+
+      botao.addEventListener('click', function () {
+        if (typeof fbq !== 'function') return;
+        fbq('track', 'InitiateCheckout', {
+          content_name: botao.getAttribute('data-checkout-nome'),
+          content_type: 'product',
+          currency: 'BRL',
+          value: parseFloat(botao.getAttribute('data-checkout-valor'))
+        });
+      });
+    });
+
+    var demo = document.querySelector('.demo');
+    if (!demo || typeof fbq !== 'function' || !('IntersectionObserver' in window)) return;
+    var enviado = false;
+    new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (enviado || !entrada.isIntersecting) return;
+        enviado = true;
+        fbq('track', 'ViewContent', {
+          content_name: 'Primeiros Potinhos',
+          content_type: 'product'
+        });
+      });
+    }, { threshold: 0.5 }).observe(demo);
+  })();
+</script>
+
+</body>
+</html>
